@@ -191,6 +191,7 @@ export function ResultsClient({
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {imageData.map((result) => (
               <LotteryCard
+                id={result.id}
                 key={result.id}
                 title={result.title}
                 date={result.date}
