@@ -12,11 +12,10 @@ import {
   LogOut,
   ShieldCheck,
   Settings,
-  Gamepad2, // ✅ Added Gamepad Icon
+  Gamepad2,
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Import Alert Dialog Components
 import {
   AlertDialog,
   AlertDialogAction,
@@ -46,7 +45,10 @@ export function AdminSidebar() {
     router.push("/");
   };
 
-  // Animation Variants
+  const handleStartGame = () => {
+    window.open("https://nepallottery-game.netlify.app", "_blank");
+  };
+
   const containerVariants = {
     hidden: { opacity: 0, x: -20 },
     visible: {
@@ -71,7 +73,7 @@ export function AdminSidebar() {
       variants={containerVariants}
       className="hidden md:flex w-64 flex-col h-full bg-card border rounded-2xl shadow-sm overflow-hidden shrink-0"
     >
-      {/* Header - Compact */}
+      {/* Header */}
       <div className="h-14 flex items-center px-5 border-b bg-muted/5">
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -84,7 +86,7 @@ export function AdminSidebar() {
         </motion.div>
       </div>
 
-      {/* Nav Links - Scrollable Area */}
+      {/* Nav Links */}
       <div className="flex-1 overflow-y-auto py-3 px-3 space-y-1">
         {navItems.map((item) => {
           const isActive = pathname.startsWith(item.href);
@@ -107,20 +109,49 @@ export function AdminSidebar() {
         })}
       </div>
 
-      {/* ✅ START GAME BUTTON (Pinned above Footer) */}
+      {/* ✅ START GAME BUTTON (With Popup) */}
       <motion.div variants={itemVariants} className="px-3 pb-2">
-        <a
-          href="https://nepallottery-game.netlify.app"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex w-full items-center gap-3 px-3 py-2.5 rounded-xl border border-primary/20 bg-primary/5 text-primary hover:bg-primary/10 hover:shadow-sm transition-all text-[13px] font-semibold"
-        >
-          <Gamepad2 className="h-4 w-4" />
-          Start Game
-        </a>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <button className="flex w-full items-center gap-3 px-3 py-2.5 rounded-xl border border-primary/20 bg-primary/5 text-primary hover:bg-primary/10 hover:shadow-sm transition-all text-[13px] font-semibold group">
+              <Gamepad2 className="h-4 w-4 transition-transform group-hover:scale-110" />
+              Start Game
+            </button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Game Instructions</AlertDialogTitle>
+              <AlertDialogDescription className="space-y-3 pt-2 text-sm text-foreground/80">
+                <p>Be focused while playing the game.</p>
+                
+                {/* Highlighted Zoom Instructions */}
+                <div className="p-3 bg-muted/50 border rounded-lg space-y-1.5 font-mono text-xs">
+                  <div className="flex justify-between">
+                    <span>Aarzoo&apos;s Desktop Zoom:</span>
+                    <span className="font-bold text-primary">133%</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span>Wasim&apos;s Desktop Zoom:</span>
+                    <span className="font-bold text-primary">120%</span>
+                  </div>
+                </div>
+
+                <p className="font-medium text-destructive/80">
+                  Please set the zoom level before pressing Start Game.
+                </p>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleStartGame}>
+                Start Game
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </motion.div>
 
-      {/* Footer with Sign Out Popup */}
+      {/* Footer (Sign Out) */}
       <motion.div variants={itemVariants} className="p-3 border-t bg-muted/10">
         <AlertDialog>
           <AlertDialogTrigger asChild>
