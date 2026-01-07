@@ -12,10 +12,11 @@ import {
   LogOut,
   ShieldCheck,
   Settings,
+  Gamepad2, // ✅ Added Gamepad Icon
 } from "lucide-react";
-import { motion } from "framer-motion"; // ✅ Import Framer Motion
+import { motion } from "framer-motion";
 
-// ✅ Import Alert Dialog Components
+// Import Alert Dialog Components
 import {
   AlertDialog,
   AlertDialogAction,
@@ -45,7 +46,7 @@ export function AdminSidebar() {
     router.push("/");
   };
 
-  // ✅ Animation Variants
+  // Animation Variants
   const containerVariants = {
     hidden: { opacity: 0, x: -20 },
     visible: {
@@ -53,7 +54,7 @@ export function AdminSidebar() {
       x: 0,
       transition: {
         duration: 0.5,
-        staggerChildren: 0.1, // Items ek ke baad ek aayenge
+        staggerChildren: 0.1,
       },
     },
   };
@@ -83,7 +84,7 @@ export function AdminSidebar() {
         </motion.div>
       </div>
 
-      {/* Nav Links - Smaller Text */}
+      {/* Nav Links - Scrollable Area */}
       <div className="flex-1 overflow-y-auto py-3 px-3 space-y-1">
         {navItems.map((item) => {
           const isActive = pathname.startsWith(item.href);
@@ -105,6 +106,19 @@ export function AdminSidebar() {
           );
         })}
       </div>
+
+      {/* ✅ START GAME BUTTON (Pinned above Footer) */}
+      <motion.div variants={itemVariants} className="px-3 pb-2">
+        <a
+          href="https://nepallottery-game.netlify.app"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex w-full items-center gap-3 px-3 py-2.5 rounded-xl border border-primary/20 bg-primary/5 text-primary hover:bg-primary/10 hover:shadow-sm transition-all text-[13px] font-semibold"
+        >
+          <Gamepad2 className="h-4 w-4" />
+          Start Game
+        </a>
+      </motion.div>
 
       {/* Footer with Sign Out Popup */}
       <motion.div variants={itemVariants} className="p-3 border-t bg-muted/10">
