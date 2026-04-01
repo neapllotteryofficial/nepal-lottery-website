@@ -17,7 +17,12 @@ export async function createCategory(name: string) {
       name,
     });
 
+    // 👇 CACHE CLEAR PATHS
     revalidatePath("/admin/categories");
+    revalidatePath("/admin/image-results"); // Dropdown update karne ke liye
+    revalidatePath("/results");
+    revalidatePath("/");
+
     return { success: true, message: "Category added successfully" };
   } catch (error) {
     return { success: false, message: "Failed to add category" };
@@ -29,7 +34,12 @@ export async function deleteCategory(id: string) {
   try {
     await db.delete(categories).where(eq(categories.id, id));
 
+    // 👇 CACHE CLEAR PATHS
     revalidatePath("/admin/categories");
+    revalidatePath("/admin/image-results"); // Dropdown update karne ke liye
+    revalidatePath("/results");
+    revalidatePath("/");
+
     return { success: true, message: "Category deleted successfully" };
   } catch (error) {
     return { success: false, message: "Failed to delete category" };
@@ -327,7 +337,12 @@ export async function updateCategory(id: string, name: string) {
       .set({ name })
       .where(eq(categories.id, id));
 
+    // 👇 ADD THESE LINES
     revalidatePath("/admin/categories");
+    revalidatePath("/admin/image-results"); // Is page ka cache clear karega
+    revalidatePath("/results"); // Agar public page pe category dikhti hai
+    revalidatePath("/"); // Home page cache clear karega
+
     return { success: true, message: "Category updated successfully" };
   } catch (error) {
     return { success: false, message: "Failed to update category" };
