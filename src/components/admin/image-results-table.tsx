@@ -74,7 +74,6 @@ export function ImageResultsTable({
     setIsDialogOpen(true);
   };
 
-  // ✅ Handle Delete Confirm
   const onDelete = async () => {
     if (!deleteId) return;
     const item = data.find((d) => d.id === deleteId);
@@ -133,6 +132,7 @@ export function ImageResultsTable({
                         src={row.imageUrl}
                         alt={row.title}
                         fill
+                        unoptimized // ✅ FIX ADDED HERE
                         className="object-cover"
                       />
                     </div>
@@ -160,7 +160,6 @@ export function ImageResultsTable({
                           <Edit className="mr-2 h-4 w-4" /> Edit
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
-                        {/* ✅ Trigger Delete Popup */}
                         <DropdownMenuItem
                           onClick={() => setDeleteId(row.id)}
                           className="text-destructive focus:text-destructive"
@@ -184,7 +183,6 @@ export function ImageResultsTable({
         initialData={editingItem}
       />
 
-      {/* ✅ DELETE CONFIRMATION POPUP */}
       <AlertDialog
         open={!!deleteId}
         onOpenChange={(open) => !open && setDeleteId(null)}

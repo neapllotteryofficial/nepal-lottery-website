@@ -28,6 +28,7 @@ import {
   DialogContent,
   DialogTrigger,
   DialogTitle,
+  DialogDescription, // ✅ Imported DialogDescription
 } from "@/components/ui/dialog";
 import {
   DropdownMenu,
@@ -61,7 +62,7 @@ export function SingleResultClient({ data }: SingleResultClientProps) {
       link.href = url;
       link.download = `${format(
         new Date(data.resultDate),
-        "yyyy-MM-dd"
+        "yyyy-MM-dd",
       )}-${data.title.replace(/\s+/g, "-")}.jpg`;
 
       document.body.appendChild(link);
@@ -114,26 +115,24 @@ export function SingleResultClient({ data }: SingleResultClientProps) {
         </Link>
 
         {/* --- LAYOUT GRID --- */}
-        {/* items-start is important for sticky to work */}
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           {/* ================= LEFT COLUMN: IMAGE & ACTIONS (STICKY) ================= */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4 }}
-            // Sticky Logic: lg:sticky lg:top-24 creates the sticking effect on desktop
             className="w-full lg:col-span-5 lg:sticky lg:top-24 space-y-4"
           >
             {/* 1. IMAGE CONTAINER */}
             <Dialog>
               <DialogTrigger asChild>
                 <div className="relative w-full bg-card/50 backdrop-blur-sm border rounded-2xl shadow-sm overflow-hidden cursor-zoom-in group">
-                  {/* Aspect Ratio Logic */}
                   <div className="relative w-full aspect-[4/5] lg:aspect-[3/4] bg-muted/20">
                     <Image
                       src={data.imageUrl}
                       alt={data.title}
                       fill
+                      unoptimized // ✅ FIX ADDED HERE
                       priority
                       sizes="(max-width: 768px) 100vw, 40vw"
                       className="object-contain p-1 transition-transform duration-500 group-hover:scale-105"
@@ -153,12 +152,17 @@ export function SingleResultClient({ data }: SingleResultClientProps) {
               {/* Zoom Modal */}
               <DialogContent className="max-w-[95vw] h-[90vh] bg-transparent border-none p-0 shadow-none outline-none">
                 <DialogTitle className="sr-only">{data.title}</DialogTitle>
+                <DialogDescription className="sr-only">
+                  Image Zoom View
+                </DialogDescription>{" "}
+                {/* ✅ WARNING FIX */}
                 <div className="relative w-full h-full flex items-center justify-center">
                   <div className="relative w-full h-full">
                     <Image
                       src={data.imageUrl}
                       alt={data.title}
                       fill
+                      unoptimized // ✅ FIX ADDED HERE
                       className="object-contain drop-shadow-2xl"
                     />
                   </div>
@@ -166,7 +170,7 @@ export function SingleResultClient({ data }: SingleResultClientProps) {
               </DialogContent>
             </Dialog>
 
-            {/* 2. ACTIONS (Floating on Mobile, Normal on Desktop) */}
+            {/* 2. ACTIONS */}
             <div className="p-2 rounded-xl border bg-background/80 backdrop-blur-md shadow-lg flex items-center gap-2 sticky bottom-4 z-20 lg:relative lg:bottom-auto lg:z-auto lg:border-none lg:shadow-none lg:bg-transparent lg:p-0">
               <Button
                 onClick={handleDownload}
@@ -243,7 +247,7 @@ export function SingleResultClient({ data }: SingleResultClientProps) {
 
             <Separator className="bg-border/60" />
 
-            {/* 3. MARKDOWN CONTENT (Removed Card Styles) */}
+            {/* 3. MARKDOWN CONTENT */}
             <div className="space-y-4">
               <div className="flex items-center gap-2 mb-2 text-muted-foreground/80">
                 <FileText className="w-4 h-4" />
@@ -257,7 +261,6 @@ export function SingleResultClient({ data }: SingleResultClientProps) {
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
                     components={{
-                      // Table Wrapper for responsiveness
                       table: ({ ...props }) => (
                         <div className="w-full overflow-x-auto my-6 rounded-lg border bg-background shadow-sm scrollbar-thin scrollbar-thumb-muted-foreground/20">
                           <table
@@ -266,7 +269,6 @@ export function SingleResultClient({ data }: SingleResultClientProps) {
                           />
                         </div>
                       ),
-                      // Clean Typography
                       h1: ({ ...props }) => (
                         <h1
                           className="text-xl md:text-2xl font-bold mt-8 mb-4 text-foreground border-b pb-2"
@@ -312,7 +314,7 @@ export function SingleResultClient({ data }: SingleResultClientProps) {
 
             <Separator className="bg-border/60" />
 
-            {/* 4. PLAIN DISCLAIMER (Removed Box) */}
+            {/* 4. PLAIN DISCLAIMER */}
             <div className="flex gap-4 items-start text-sm text-muted-foreground opacity-80">
               <ShieldCheck className="h-5 w-5 shrink-0 mt-0.5 text-amber-600 dark:text-amber-500" />
               <div className="space-y-1">
