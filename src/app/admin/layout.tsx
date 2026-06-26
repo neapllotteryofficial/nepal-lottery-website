@@ -25,19 +25,21 @@ export default function AdminLayout({
 
   // CASE 2: Admin Dashboard (With Sidebar & Navbar)
   return (
-    <div className="flex h-screen w-full max-w-[1600px] mx-auto flex-col md:flex-row overflow-hidden md:p-3 md:gap-3">
+    <div className="flex h-screen w-full flex-col md:flex-row overflow-hidden md:p-3 md:gap-3">
       {/* Sidebar (Desktop) */}
       <AdminSidebar />
 
-      {/* Content Area */}
-      <div className="flex-1 flex flex-col h-full min-w-0 md:gap-3">
-        {/* Navbar (Includes Mobile Sidebar Trigger) */}
-        <AdminNavbar />
+      {/* Content Area Wrapper */}
+      <div className="flex-1 flex justify-center h-full min-w-0">
+        <div className="flex flex-col h-full w-full max-w-[1600px] md:gap-3">
+          {/* Navbar (Includes Mobile Sidebar Trigger) */}
+          <AdminNavbar />
 
-        {/* Dynamic Page Content */}
-        <main className="flex-1 overflow-y-auto rounded-2xl bg-muted/10 border border-border/50 relative">
-          {children}
-        </main>
+          {/* Dynamic Page Content */}
+          <main className="flex-1 overflow-y-auto rounded-2xl bg-muted/10 border border-border/50 relative">
+            {children}
+          </main>
+        </div>
       </div>
     </div>
   );
