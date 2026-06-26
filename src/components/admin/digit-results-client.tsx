@@ -30,21 +30,7 @@ export function DigitResultsClient({ data }: { data: DigitResultData[] }) {
   };
 
   return (
-    <div className="relative min-h-full overflow-hidden">
-      {/* 1. ANIMATED BACKGROUND BLOBS */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.5, delay: 0.2, ease: "easeOut" }}
-        className="absolute bottom-[10%] left-[-10%] w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none"
-      />
-
+    <div className="relative min-h-full">
       {/* 2. MAIN CONTENT */}
       <motion.div
         variants={containerVariants}

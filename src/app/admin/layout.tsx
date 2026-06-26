@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import { AdminSidebar } from "@/components/admin/admin-sidebar";
 import { AdminNavbar } from "@/components/admin/admin-navbar";
+import { motion } from "framer-motion";
 
 export default function AdminLayout({
   children,
@@ -35,8 +36,22 @@ export default function AdminLayout({
         <AdminNavbar />
 
         {/* Dynamic Page Content */}
-        <main className="flex-1 overflow-y-auto rounded-2xl bg-muted/10 border border-border/50 relative">
-          <div className="w-full max-w-[1600px] mx-auto h-full">
+        <main className="flex-1 overflow-y-auto rounded-2xl bg-muted/10 border border-border/50 relative overflow-hidden">
+          {/* Global Animated Background Blobs for Dashboard */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none"
+          />
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.2 }}
+            className="absolute bottom-[-10%] left-[-5%] w-[400px] h-[400px] bg-blue-500/10 rounded-full blur-[100px] pointer-events-none"
+          />
+
+          <div className="w-full max-w-[1600px] mx-auto h-full relative z-10">
             {children}
           </div>
         </main>
