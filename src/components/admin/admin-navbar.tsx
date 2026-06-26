@@ -14,7 +14,7 @@ export function AdminNavbar() {
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
-      className="h-14 flex items-center justify-between px-4 md:px-6 bg-card border-b md:border md:rounded-2xl md:shadow-sm shrink-0"
+      className="h-16 flex items-center justify-between px-4 md:px-6 bg-background/80 backdrop-blur-md border-b border-border/50 shrink-0"
     >
       <div className="w-full max-w-[1600px] mx-auto flex items-center justify-between">
         {/* Left Side: Mobile Menu & Page Title */}
