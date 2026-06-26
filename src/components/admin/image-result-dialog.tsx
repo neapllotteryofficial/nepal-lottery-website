@@ -246,7 +246,7 @@ export function ImageResultDialog({
                 ref={fileInputRef}
                 name="image"
                 type="file"
-                accept=".webp, image/webp"
+                accept="image/*"
                 className="hidden"
                 onChange={handleImageChange}
                 required={!initialData} // Create mode mein required, Edit mein optional
