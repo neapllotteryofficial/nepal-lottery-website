@@ -30,16 +30,16 @@ export default function AdminLayout({
       <AdminSidebar />
 
       {/* Content Area Wrapper */}
-      <div className="flex-1 flex justify-center h-full min-w-0">
-        <div className="flex flex-col h-full w-full max-w-[1600px] md:gap-3">
-          {/* Navbar (Includes Mobile Sidebar Trigger) */}
-          <AdminNavbar />
+      <div className="flex-1 flex flex-col h-full min-w-0 md:gap-3">
+        {/* Navbar (Includes Mobile Sidebar Trigger) */}
+        <AdminNavbar />
 
-          {/* Dynamic Page Content */}
-          <main className="flex-1 overflow-y-auto rounded-2xl bg-muted/10 border border-border/50 relative">
+        {/* Dynamic Page Content */}
+        <main className="flex-1 overflow-y-auto rounded-2xl bg-muted/10 border border-border/50 relative">
+          <div className="w-full max-w-[1600px] mx-auto h-full">
             {children}
-          </main>
-        </div>
+          </div>
+        </main>
       </div>
     </div>
   );
