@@ -85,6 +85,15 @@ export function ImageResultDialog({
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
+      const isWebp = file.type === "image/webp" || file.name.toLowerCase().endsWith(".webp");
+      if (!isWebp) {
+        toast.error("Please select a WebP image (.webp format only).");
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
+        setPreviewUrl(null);
+        return;
+      }
       setPreviewUrl(URL.createObjectURL(file));
     }
   };
@@ -237,7 +246,7 @@ export function ImageResultDialog({
                 ref={fileInputRef}
                 name="image"
                 type="file"
-                accept="image/*"
+                accept=".webp, image/webp"
                 className="hidden"
                 onChange={handleImageChange}
                 required={!initialData} // Create mode mein required, Edit mein optional
