@@ -205,7 +205,7 @@ export function DashboardClient({
         </motion.div>
 
         {/* Bottom Section: Quick Actions & Recent Activity */}
-        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-7">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
           {/* Quick Actions */}
           <motion.div
             variants={itemVariants}
@@ -219,10 +219,10 @@ export function DashboardClient({
               <CardContent className="grid gap-3">
                 <Link
                   href="/admin/image-results"
-                  className="flex items-center justify-between p-3.5 rounded-xl border bg-card hover:bg-blue-500/5 hover:border-blue-500/30 transition-all group shadow-sm"
+                  className="flex items-center justify-between p-3 rounded-xl border bg-card hover:bg-blue-500/5 hover:border-blue-500/30 transition-all group shadow-sm"
                 >
-                  <div className="flex items-center gap-3.5">
-                    <div className="p-2.5 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-lg group-hover:scale-110 transition-transform">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-blue-100 dark:bg-blue-900/30 text-blue-600 rounded-lg group-hover:scale-110 transition-transform">
                       <ImageIcon className="h-5 w-5" />
                     </div>
                     <div>
@@ -235,10 +235,10 @@ export function DashboardClient({
 
                 <Link
                   href="/admin/digit-results"
-                  className="flex items-center justify-between p-3.5 rounded-xl border bg-card hover:bg-purple-500/5 hover:border-purple-500/30 transition-all group shadow-sm"
+                  className="flex items-center justify-between p-3 rounded-xl border bg-card hover:bg-purple-500/5 hover:border-purple-500/30 transition-all group shadow-sm"
                 >
-                  <div className="flex items-center gap-3.5">
-                    <div className="p-2.5 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-lg group-hover:scale-110 transition-transform">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-purple-100 dark:bg-purple-900/30 text-purple-600 rounded-lg group-hover:scale-110 transition-transform">
                       <Hash className="h-5 w-5" />
                     </div>
                     <div>
@@ -251,10 +251,10 @@ export function DashboardClient({
 
                 <Link
                   href="/admin/messages"
-                  className="flex items-center justify-between p-3.5 rounded-xl border bg-card hover:bg-pink-500/5 hover:border-pink-500/30 transition-all group shadow-sm"
+                  className="flex items-center justify-between p-3 rounded-xl border bg-card hover:bg-pink-500/5 hover:border-pink-500/30 transition-all group shadow-sm"
                 >
-                  <div className="flex items-center gap-3.5">
-                    <div className="p-2.5 bg-pink-100 dark:bg-pink-900/30 text-pink-600 rounded-lg group-hover:scale-110 transition-transform">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-pink-100 dark:bg-pink-900/30 text-pink-600 rounded-lg group-hover:scale-110 transition-transform">
                       <Mail className="h-5 w-5" />
                     </div>
                     <div>
@@ -271,10 +271,10 @@ export function DashboardClient({
 
                 <Link
                   href="/admin/categories"
-                  className="flex items-center justify-between p-3.5 rounded-xl border bg-card hover:bg-orange-500/5 hover:border-orange-500/30 transition-all group shadow-sm"
+                  className="flex items-center justify-between p-3 rounded-xl border bg-card hover:bg-orange-500/5 hover:border-orange-500/30 transition-all group shadow-sm"
                 >
-                  <div className="flex items-center gap-3.5">
-                    <div className="p-2.5 bg-orange-100 dark:bg-orange-900/30 text-orange-600 rounded-lg group-hover:scale-110 transition-transform">
+                  <div className="flex items-center gap-3">
+                    <div className="p-2 bg-orange-100 dark:bg-orange-900/30 text-orange-600 rounded-lg group-hover:scale-110 transition-transform">
                       <Layers className="h-5 w-5" />
                     </div>
                     <div>
